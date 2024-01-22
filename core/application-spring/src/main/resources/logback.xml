@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender" scan="true">
+        <encoder>
+            <pattern>
+                %d{HH:mm:ss.SSS} [%magenta(%-28.28thread)] %highlight(%-5level) %-36.36logger{32} :%4.7L || %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <!--    <appender name="OpenTelemetry"-->
+    <!--              class="io.opentelemetry.instrumentation.logback.appender.v1_0.OpenTelemetryAppender">-->
+    <!--        <captureExperimentalAttributes>true</captureExperimentalAttributes>-->
+    <!--        <captureMdcAttributes>*</captureMdcAttributes>-->
+    <!--    </appender>-->
+
+    <logger name="com.github.f442y.dispersion" level="debug" additivity="false">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
+    <root level="info">
+        <appender-ref ref="STDOUT"/>
+        <!--        <appender-ref ref="OpenTelemetry"/>-->
+    </root>
+
+</configuration>
