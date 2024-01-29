@@ -3,9 +3,8 @@ package net.fa.dispersion.stateactorsystem.statemachine.simple_test_statemachine
 import lombok.extern.slf4j.Slf4j;
 import net.fa.dispersion.stateactorsystem.statemachine.NestedStateMachine;
 import net.fa.dispersion.stateactorsystem.statemachine.NestedStateMachineConfiguration;
+import net.fa.dispersion.stateactorsystem.statemachine.action.Action;
 import net.fa.dispersion.stateactorsystem.statemachine.action.NestedTaskScopeAction;
-import net.fa.dispersion.stateactorsystem.statemachine.action.ProgressingAction;
-import net.fa.dispersion.stateactorsystem.statemachine.action.WaitingAction;
 import net.fa.dispersion.stateactorsystem.statemachine.context.StateMachineContext;
 import net.fa.dispersion.stateactorsystem.statemachine.context.StateMachineContextFactory;
 import net.fa.dispersion.stateactorsystem.statemachine.state.State;
@@ -33,7 +32,7 @@ public class SimpleNestedStateMachine extends NestedStateMachineConfiguration<Si
     protected static final ScopedValue<SimpleNestedMachineContext> CONTEXT = ScopedValue.newInstance();
     //        private static final ProgressingAction<ActorMessage, SimpleNestedMachineContext> action = new
     //        ProgressingActionBuilder.Builder<SimpleNestedMachineContext>().build();
-    private static final ProgressingAction<SimpleNestedMachineContext> action = (context) -> {
+    private static final Action<SimpleNestedMachineContext> action = (context) -> {
         log.trace(STR."parent context access from nested: \{SimpleParentStateMachine.CONTEXT.get().string}");
         log.trace(
                 STR."nested again context access from nested: is bound? \{SimpleNestedAgainStateMachine.CONTEXT.isBound()}");
@@ -52,10 +51,6 @@ public class SimpleNestedStateMachine extends NestedStateMachineConfiguration<Si
                     .addStateMachine(SimpleNestedAgainStateMachine.stateMachine)
                     .addStateMachine(SimpleNestedAgainStateMachine.stateMachine)
                     .build();
-
-    private static final WaitingAction<SimpleNestedMachineContext> waitingAction = (actorMessage, context) -> {
-        return context;
-    };
 
     private SimpleNestedStateMachine() {
         // no op, static state-machine config

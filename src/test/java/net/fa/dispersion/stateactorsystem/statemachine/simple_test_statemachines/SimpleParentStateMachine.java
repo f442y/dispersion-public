@@ -3,8 +3,8 @@ package net.fa.dispersion.stateactorsystem.statemachine.simple_test_statemachine
 import lombok.extern.slf4j.Slf4j;
 import net.fa.dispersion.stateactorsystem.statemachine.StateMachine;
 import net.fa.dispersion.stateactorsystem.statemachine.StateMachineConfiguration;
+import net.fa.dispersion.stateactorsystem.statemachine.action.Action;
 import net.fa.dispersion.stateactorsystem.statemachine.action.NestedTaskScopeAction;
-import net.fa.dispersion.stateactorsystem.statemachine.action.ProgressingAction;
 import net.fa.dispersion.stateactorsystem.statemachine.context.StateMachineContext;
 import net.fa.dispersion.stateactorsystem.statemachine.context.StateMachineContextFactory;
 import net.fa.dispersion.stateactorsystem.statemachine.state.StateMachineState;
@@ -26,7 +26,7 @@ public final class SimpleParentStateMachine extends StateMachineConfiguration {
                     .states(EnumSet.allOf(States.class))
                     .build();
 
-    private static final ProgressingAction<SimpleParentMachineContext> action = (context) -> {
+    private static final Action<SimpleParentMachineContext> action = (context) -> {
         log.trace(context.string);
         return context;
     };

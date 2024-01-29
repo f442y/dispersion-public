@@ -11,7 +11,7 @@ import java.util.ArrayList;
 @Slf4j
 public class NestedTaskScopeAction<PARENT_CTX extends StateMachineContext<PARENT_CTX>,
         NESTED_CTX extends StateMachineContext<NESTED_CTX>> implements
-        ProgressingAction<PARENT_CTX> {
+        Action<PARENT_CTX> {
     private final NestedStateMachine<NESTED_CTX, PARENT_CTX>[] nestedStateMachines;
     private final ScopedValue<PARENT_CTX> PARENT_CONTEXT;
     private final String name;
@@ -23,7 +23,7 @@ public class NestedTaskScopeAction<PARENT_CTX extends StateMachineContext<PARENT
     }
 
     @Override
-    public PARENT_CTX progress(PARENT_CTX stateMachineContext) {
+    public PARENT_CTX runAction(PARENT_CTX stateMachineContext) {
         log.trace("Thread: {} | Nested task scope action run", Thread.currentThread().threadId());
         // the context of the parent state-machine is passed in as a scoped value to every child state-machine
         ScopedValue.runWhere(PARENT_CONTEXT, stateMachineContext, () -> {

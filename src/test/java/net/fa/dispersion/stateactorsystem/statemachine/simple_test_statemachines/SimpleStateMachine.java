@@ -2,8 +2,7 @@ package net.fa.dispersion.stateactorsystem.statemachine.simple_test_statemachine
 
 import lombok.extern.slf4j.Slf4j;
 import net.fa.dispersion.stateactorsystem.statemachine.StateMachine;
-import net.fa.dispersion.stateactorsystem.statemachine.action.ProgressingAction;
-import net.fa.dispersion.stateactorsystem.statemachine.action.WaitingAction;
+import net.fa.dispersion.stateactorsystem.statemachine.action.Action;
 import net.fa.dispersion.stateactorsystem.statemachine.context.StateMachineContext;
 import net.fa.dispersion.stateactorsystem.statemachine.context.StateMachineContextFactory;
 import net.fa.dispersion.stateactorsystem.statemachine.state.State;
@@ -26,21 +25,16 @@ public class SimpleStateMachine {
                     .states(EnumSet.allOf(SimpleStateMachine.States.class))
                     .returnFunction(SimpleStateMachine::returnFunction)
                     .build();
-
-    private static final ProgressingAction<SimpleStateMachineContext> action = (context) -> {
+    private static final Action<SimpleStateMachineContext> action = (context) -> {
 //        log.info("SM Action log");
         context.num++;
 //        logger.info(String.valueOf(context.num));
         return context;
     };
 
-    private static final ProgressingAction<SimpleStateMachineContext> failAction = (_) -> {
+    private static final Action<SimpleStateMachineContext> failAction = (_) -> {
         log.info("SM Fail log");
         throw new RuntimeException("SM Fail");
-    };
-
-    private static final WaitingAction<SimpleStateMachineContext> waitingAction = (actorMessage, context) -> {
-        return context;
     };
 
     private SimpleStateMachine() {

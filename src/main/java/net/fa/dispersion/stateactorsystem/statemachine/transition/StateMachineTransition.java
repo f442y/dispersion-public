@@ -7,11 +7,11 @@ import java.util.function.Function;
 
 /**
  * Class used to hold and build a {@link StateMachineTransition} which is used by the
- * {@link net.fa.dispersion.stateactorsystem.actors.StateMachineActor} event loop to get the
+ * {@link net.fa.dispersion.stateactorsystem.actor.StateMachineActor} event loop to get the
  * {@link Transition} that should be applied to the statemachine.
  * <p>
  * The {@link #getNextStateConfiguration(StateMachineContext)} function is used by
- * {@link net.fa.dispersion.stateactorsystem.actors.StateMachineActor}
+ * {@link net.fa.dispersion.stateactorsystem.actor.StateMachineActor}
  * to extract the {@link Transition}.
  * <p>
  * This class allows the transitioning of the statemachine to be (optionally) 'context aware'.
@@ -75,7 +75,7 @@ public class StateMachineTransition<CTX extends StateMachineContext<CTX>> {
     }
 
     /**
-     * Function used by {@link net.fa.dispersion.stateactorsystem.actors.StateMachineActor} to get {@link Transition}
+     * Function used by {@link net.fa.dispersion.stateactorsystem.actor.StateMachineActor} to get {@link Transition}
      * which is to be applied to the statemachine.
      * <p>
      * This function applies the {@link #transitionFunction} to the statemachines context which should give back a

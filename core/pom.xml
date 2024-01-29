@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.github.f442y</groupId>
+        <artifactId>dispersion</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <groupId>com.github.f442y.dispersion</groupId>
+    <artifactId>core</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>statemachine-core</module>
+        <module>application-core</module>
+        <module>orchestration-core</module>
+        <module>service-core</module>
+        <module>orchestration-api</module>
+        <module>service-api</module>
+        <module>statemachine-api</module>
+        <module>statemachine-utils</module>
+        <module>application-api</module>
+        <module>statemachine-events</module>
+        <module>statemachine-monitor</module>
+    </modules>
+
+    <dependencies>
+        <!--        <dependency>-->
+        <!--            <groupId>cn.danielw</groupId>-->
+        <!--            <artifactId>fast-object-pool</artifactId>-->
+        <!--        </dependency>-->
+
+        <!--        <dependency>-->
+        <!--            <groupId>org.apache.fury</groupId>-->
+        <!--            <artifactId>fury-core</artifactId>-->
+        <!--        </dependency>-->
+
+        <!--        <dependency>-->
+        <!--            <groupId>com.softwaremill.jox</groupId>-->
+        <!--            <artifactId>channels</artifactId>-->
+        <!--        </dependency>-->
+
+        <!--        <dependency>-->
+        <!--            <groupId>io.micrometer</groupId>-->
+        <!--            <artifactId>micrometer-tracing</artifactId>-->
+        <!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>io.micrometer</groupId>-->
+        <!--            <artifactId>micrometer-tracing-bridge-brave</artifactId>-->
+        <!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>io.opentelemetry</groupId>-->
+        <!--            <artifactId>opentelemetry-exporter-otlp</artifactId>-->
+        <!--        </dependency>-->
+
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.kafka</groupId>-->
+        <!--            <artifactId>spring-kafka</artifactId>-->
+        <!--        </dependency>-->
+
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.boot</groupId>-->
+        <!--            <artifactId>spring-boot-starter-artemis</artifactId>-->
+        <!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.apache.activemq</groupId>-->
+        <!--            <artifactId>artemis-jakarta-client</artifactId>-->
+        <!--        </dependency>-->
+    </dependencies>
+
+</project>

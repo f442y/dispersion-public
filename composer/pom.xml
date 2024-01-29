@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.github.f442y</groupId>
+        <artifactId>dispersion</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <groupId>com.github.f442y.dispersion</groupId>
+    <artifactId>composer</artifactId>
+    <dependencies>
+
+        <!-- Add all services in services module here -->
+
+        <dependency>
+            <groupId>com.github.f442y.dispersion.service.interfaces</groupId>
+            <artifactId>orchestration-services</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.f442y.dispersion</groupId>
+            <artifactId>samples</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.f442y.dispersion.core</groupId>
+            <artifactId>statemachine-api</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.reflections</groupId>
+            <artifactId>reflections</artifactId>
+            <version>[0.10.2,)</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.f442y.dispersion.core</groupId>
+            <artifactId>statemachine-utils</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.softwaremill.jox</groupId>
+            <artifactId>channels</artifactId>
+        </dependency>
+
+    </dependencies>
+
+</project>

@@ -1,7 +1,7 @@
 package net.fa.dispersion.stateactorsystem.executors;
 
-import net.fa.dispersion.stateactorsystem.actors.StateMachineActorWithFuture;
-import net.fa.dispersion.stateactorsystem.actors.StateMachineSupplierActor;
+import net.fa.dispersion.stateactorsystem.actor.StateMachineActorWithFuture;
+import net.fa.dispersion.stateactorsystem.actor.StateMachineSupplierActor;
 import net.fa.dispersion.stateactorsystem.statemachine.StateMachine;
 import net.fa.dispersion.stateactorsystem.statemachine.context.StateMachineContext;
 
@@ -27,15 +27,12 @@ public class BufferedServiceTaskExecutor<CTX extends StateMachineContext<CTX>, R
         // number of threads are awaiting execution, limiting heap size
         bufferSemaphore.acquire();
         // Build the actor, for the state-machine, this also initializes the context for the state-machine
-        var supplierActor =
-                new StateMachineSupplierActor.StateMachineSupplierActorBuilder<CTX, RTN>().stateMachine(stateMachine);
-        return new StateMachineActorWithFuture<>(supplierActor,
-                CompletableFuture.supplyAsync(supplierActor, executorService).thenApplyAsync((_) -> {
-                    // todo: does not release permit on exception
-                    // todo: do not use completable future to release
-                    bufferSemaphore.release();
-                    return null;
-                })
-        );
+        try (var supplierActor = new StateMachineSupplierActor.StateMachineSupplierActorBuilder<CTX, RTN>()
+                .buffered(bufferSemaphore)
+                .stateMachine(stateMachine)) {
+            return new StateMachineActorWithFuture<>(supplierActor,
+                    CompletableFuture.supplyAsync(supplierActor, executorService)
+            );
+        }
     }
 }

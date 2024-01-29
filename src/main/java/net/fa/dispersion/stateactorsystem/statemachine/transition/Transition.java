@@ -8,7 +8,7 @@ import net.fa.dispersion.stateactorsystem.statemachine.state.StateMachineStateCo
  * Transition interface for a statemachine actor.
  * <p>
  * All transitions must implement this interface as the
- * {@link net.fa.dispersion.stateactorsystem.actors.StateMachineActor<CTX>} event loop will use the
+ * {@link net.fa.dispersion.stateactorsystem.actor.StateMachineActor<CTX>} event loop will use the
  * {@code `applyToStateConfig()`} function to transition the state of the statemachine.
  * <p>
  * static methods for common usages are available within the interface.
@@ -48,7 +48,7 @@ public interface Transition<CTX extends StateMachineContext<CTX>> {
      * The predefined state configuration
      * {@link net.fa.dispersion.stateactorsystem.statemachine.state.StateMachineStateConfiguration.EndStateMachineStateConfiguration}
      * contains a state {@link State.EndState <CTX>}
-     * recognised by the event loop within the {@link net.fa.dispersion.stateactorsystem.actors.StateMachineActor<CTX>}
+     * recognised by the event loop within the {@link net.fa.dispersion.stateactorsystem.actor.StateMachineActor<CTX>}
      * to end/kill the statemachine.
      * <p>
      * Used to end/kill the statemachine.
@@ -58,7 +58,7 @@ public interface Transition<CTX extends StateMachineContext<CTX>> {
     }
 
     /**
-     * Used by the {@link net.fa.dispersion.stateactorsystem.actors.StateMachineActor} event loop to apply this
+     * Used by the {@link net.fa.dispersion.stateactorsystem.actor.StateMachineActor} event loop to apply this
      * {@link Transition} to the current {@link StateMachineStateConfiguration} to transition to the next state
      * configuration.
      *

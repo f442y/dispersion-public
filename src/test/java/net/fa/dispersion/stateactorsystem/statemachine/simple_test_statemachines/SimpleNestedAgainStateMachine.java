@@ -2,8 +2,7 @@ package net.fa.dispersion.stateactorsystem.statemachine.simple_test_statemachine
 
 import lombok.extern.slf4j.Slf4j;
 import net.fa.dispersion.stateactorsystem.statemachine.NestedStateMachine;
-import net.fa.dispersion.stateactorsystem.statemachine.action.ProgressingAction;
-import net.fa.dispersion.stateactorsystem.statemachine.action.WaitingAction;
+import net.fa.dispersion.stateactorsystem.statemachine.action.Action;
 import net.fa.dispersion.stateactorsystem.statemachine.context.StateMachineContext;
 import net.fa.dispersion.stateactorsystem.statemachine.context.StateMachineContextFactory;
 import net.fa.dispersion.stateactorsystem.statemachine.state.State;
@@ -28,18 +27,13 @@ public class SimpleNestedAgainStateMachine {
 
     //private static final ProgressingAction<ActorMessage, SimpleNestedAgainMachineContext> action = new
     // ProgressingActionBuilder.Builder<SimpleNestedAgainMachineContext>().build();
-    private static final ProgressingAction<SimpleNestedAgainMachineContext> action = (context) -> {
+    private static final Action<SimpleNestedAgainMachineContext> action = (context) -> {
         log.trace(STR."parent context access from nested again: \{SimpleParentStateMachine.CONTEXT.get().string}");
         log.trace(STR."nested context access from nested again: \{SimpleNestedStateMachine.CONTEXT.get().string}");
         log.trace(STR."unbound: \{SimpleNestedStateMachine.CONTEXT.get().string}");
         log.trace(context.string);
         return context;
     };
-
-    private static final WaitingAction<SimpleNestedAgainMachineContext> waitingAction =
-            (actorMessage, context) -> {
-                return context;
-            };
 
     private SimpleNestedAgainStateMachine() {
         // no op, static state-machine config
