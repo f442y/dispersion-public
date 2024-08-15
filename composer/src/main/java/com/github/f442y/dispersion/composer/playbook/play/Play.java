@@ -1,4 +1,4 @@
-package com.github.f442y.dispersion.composer.playbook;
+package com.github.f442y.dispersion.composer.playbook.play;
 
 import com.github.f442y.dispersion.composer.orchestration.OrchestratorServerNode;
 import com.github.f442y.dispersion.core.orchestration.OrchestrationEntity;
@@ -13,11 +13,11 @@ import java.util.Set;
 public abstract class Play<ORCHESTRATION_ENTITY extends OrchestrationEntity,
         ORCHESTRATION_SERVICE extends OrchestrationService> {
     //    when: scheduled, one-shot, trigger only, between only,
-    protected String atThisTime;
+    public String atThisTime;
     //    after what
     // dependency type: after all complete, entity signal, different entity
-    protected final Set<Play<? extends OrchestrationEntity, ? extends OrchestrationService>> afterThesePlays;
-    protected final OrchestrationEntityProvider<ORCHESTRATION_ENTITY> forTheseEntities;
+    public final Set<Play<? extends OrchestrationEntity, ? extends OrchestrationService>> afterThesePlays;
+    public final OrchestrationEntityProvider<ORCHESTRATION_ENTITY> forTheseEntities;
     //    Restart/Retry policy
     //    ... other data
     protected OrchestratorServerNode<ORCHESTRATION_SERVICE> orchestratorServerNode;

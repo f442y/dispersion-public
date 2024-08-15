@@ -36,6 +36,7 @@
         <gson.serializer.version>[2.10.1,)</gson.serializer.version>
         <jox.channels.version>[0.3.0,)</jox.channels.version>
         <fop.objectpool.version>[2.2.1,)</fop.objectpool.version>
+        <jgrapht.core.version>[1.5.2,)</jgrapht.core.version>
     </properties>
 
     <dependencyManagement>
@@ -66,6 +67,11 @@
                 <groupId>com.google.code.gson</groupId>
                 <artifactId>gson</artifactId>
                 <version>${gson.serializer.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jgrapht</groupId>
+                <artifactId>jgrapht-core</artifactId>
+                <version>${jgrapht.core.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.oracle.coherence.spring</groupId>

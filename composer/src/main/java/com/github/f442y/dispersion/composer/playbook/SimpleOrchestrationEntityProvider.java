@@ -10,9 +10,10 @@ import java.util.Collections;
 public class SimpleOrchestrationEntityProvider implements OrchestrationEntityProvider<SimpleOrchestrationEntity> {
 
     private final Collection<SimpleOrchestrationEntity> entities;
+    private static final SimpleOrchestrationEntity SIMPLE_ORCHESTRATION_ENTITY = new SimpleOrchestrationEntity();
 
     public SimpleOrchestrationEntityProvider() {
-        this.entities = Collections.nCopies(100, new SimpleOrchestrationEntity());
+        this.entities = Collections.nCopies(1, SIMPLE_ORCHESTRATION_ENTITY);
     }
 
     @Override

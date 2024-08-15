@@ -1,5 +1,6 @@
-package com.github.f442y.dispersion.composer.playbook;
+package com.github.f442y.dispersion.composer.playbook.play;
 
+import com.github.f442y.dispersion.composer.playbook.SimpleOrchestrationEntity;
 import com.github.f442y.dispersion.core.orchestration.OrchestrationEntityProvider;
 import com.github.f442y.dispersion.service.interfaces.SimpleOrchestrationService;
 import org.springframework.beans.factory.annotation.Autowired;
