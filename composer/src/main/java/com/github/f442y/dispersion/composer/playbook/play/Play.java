@@ -4,14 +4,14 @@ import com.github.f442y.dispersion.composer.orchestration.OrchestratorServerNode
 import com.github.f442y.dispersion.core.orchestration.OrchestrationEntity;
 import com.github.f442y.dispersion.core.orchestration.OrchestrationEntityProvider;
 import com.github.f442y.dispersion.core.orchestration.OrchestrationService;
+import com.github.f442y.dispersion.core.orchestration.PlayAPI;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Set;
 
 @Getter
-public abstract class Play<ORCHESTRATION_ENTITY extends OrchestrationEntity,
-        ORCHESTRATION_SERVICE extends OrchestrationService> {
+public abstract class Play<ORCHESTRATION_ENTITY extends OrchestrationEntity, ORCHESTRATION_SERVICE extends OrchestrationService> implements PlayAPI<ORCHESTRATION_ENTITY, ORCHESTRATION_SERVICE> {
     //    when: scheduled, one-shot, trigger only, between only,
     public String atThisTime;
     //    after what
@@ -22,9 +22,7 @@ public abstract class Play<ORCHESTRATION_ENTITY extends OrchestrationEntity,
     //    ... other data
     protected OrchestratorServerNode<ORCHESTRATION_SERVICE> orchestratorServerNode;
 
-    public Play(OrchestrationEntityProvider<ORCHESTRATION_ENTITY> forTheseEntities,
-                Set<Play<? extends OrchestrationEntity, ? extends OrchestrationService>> afterThesePlays
-    ) {
+    public Play(OrchestrationEntityProvider<ORCHESTRATION_ENTITY> forTheseEntities, Set<Play<? extends OrchestrationEntity, ? extends OrchestrationService>> afterThesePlays) {
         this.afterThesePlays = afterThesePlays;
         this.forTheseEntities = forTheseEntities;
     }
@@ -34,7 +32,9 @@ public abstract class Play<ORCHESTRATION_ENTITY extends OrchestrationEntity,
         this.orchestratorServerNode = orchestratorServerNode;
     }
 
-    public void attemptToRunPlay(String regionOrTimeZone) {}
+
+    public void attemptToRunPlay(String regionOrTimeZone) {
+    }
 }
 
 

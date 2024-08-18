@@ -37,6 +37,7 @@
         <jox.channels.version>[0.3.0,)</jox.channels.version>
         <fop.objectpool.version>[2.2.1,)</fop.objectpool.version>
         <jgrapht.core.version>[1.5.2,)</jgrapht.core.version>
+        <nitrite.db.version>4.3.0</nitrite.db.version>
     </properties>
 
     <dependencyManagement>
@@ -74,6 +75,13 @@
                 <version>${jgrapht.core.version}</version>
             </dependency>
             <dependency>
+                <groupId>org.dizitart</groupId>
+                <artifactId>nitrite-bom</artifactId>
+                <version>${nitrite.db.version}</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+            <dependency>
                 <groupId>com.oracle.coherence.spring</groupId>
                 <artifactId>coherence-spring-boot-starter</artifactId>
                 <version>[3,4)</version>
@@ -91,6 +99,22 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
+
+        <!--        <dependency>-->
+        <!--            <groupId>io.hawt</groupId>-->
+        <!--            <artifactId>hawtio-springboot</artifactId>-->
+        <!--            <version>[4.0.0,)</version>-->
+        <!--        </dependency>-->
+        <!--        &lt;!&ndash; Mandatory for enabling Camel management via JMX / Hawtio &ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.apache.camel.springboot</groupId>-->
+        <!--            <artifactId>camel-management-starter</artifactId>-->
+        <!--        </dependency>-->
+        <!--        &lt;!&ndash; (Optional) Required for Hawtio Camel route diagram tab &ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.apache.camel.springboot</groupId>-->
+        <!--            <artifactId>camel-spring-boot-xml-starter</artifactId>-->
+        <!--        </dependency>-->
 
         <!--        <dependency>-->
         <!--            <groupId>org.springframework.boot</groupId>-->
@@ -139,11 +163,6 @@
         <!--        <dependency>-->
         <!--            <groupId>com.oracle.coherence.ce</groupId>-->
         <!--            <artifactId>coherence</artifactId>-->
-        <!--        </dependency>-->
-
-        <!--        <dependency>-->
-        <!--            <groupId>org.springframework.boot</groupId>-->
-        <!--            <artifactId>spring-boot-starter-data-jpa</artifactId>-->
         <!--        </dependency>-->
 
         <!--        <dependency>-->

@@ -24,6 +24,8 @@
         <module>application-api</module>
         <module>statemachine-events</module>
         <module>statemachine-monitor</module>
+        <module>database-core</module>
+        <module>database-api</module>
     </modules>
 
     <dependencies>

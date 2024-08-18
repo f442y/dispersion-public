@@ -48,7 +48,7 @@ public class ConductorTest {
             });
         });
         TimeUnit.SECONDS.sleep(1);
-        activePlays.get("PlayOne").sendSignalToChannel(1);
+        activePlays.get("PlayOne").sendSignalToChannel(new SimpleOrchestrationEntity());
         TimeUnit.SECONDS.sleep(1);
 //        latch.await();
     }
