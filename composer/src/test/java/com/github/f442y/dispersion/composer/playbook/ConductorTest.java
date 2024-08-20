@@ -1,6 +1,7 @@
 package com.github.f442y.dispersion.composer.playbook;
 
-import com.github.f442y.dispersion.composer.playbook.play.Play;
+import com.github.f442y.dispersion.composer.model.Play;
+import com.github.f442y.dispersion.composer.model.PlayRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +20,10 @@ import java.util.stream.Collectors;
 @Slf4j
 public class ConductorTest {
     @Autowired
+    private PlayRepository playRepository;
+    @Autowired
     private Collection<Play<?, ?>> plays;
     private final ExecutorService executorService = Executors.newVirtualThreadPerTaskExecutor();
-
     private final Map<String, PlayActor> activePlays = new HashMap<>();
 
     @Test
@@ -51,5 +53,10 @@ public class ConductorTest {
         activePlays.get("PlayOne").sendSignalToChannel(new SimpleOrchestrationEntity());
         TimeUnit.SECONDS.sleep(1);
 //        latch.await();
+    }
+
+    @Test
+    public void repoTest() {
+        playRepository.findAll().iterator().forEachRemaining(System.out::println);
     }
 }

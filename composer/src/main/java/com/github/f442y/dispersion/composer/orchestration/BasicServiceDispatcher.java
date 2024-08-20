@@ -1,6 +1,6 @@
 //package com.github.f442y.dispersion.composer.orchestration;
 //
-//import com.github.f442y.dispersion.composer.playbook.play.SimpleOrchestrationServicePlays;
+//import com.github.f442y.dispersion.composer.model.SimpleOrchestrationServicePlays;
 //import com.github.f442y.dispersion.samples.TestStateMachineSpring.TestSpringStateMachine;
 //import lombok.extern.slf4j.Slf4j;
 //import org.springframework.beans.factory.annotation.Autowired;

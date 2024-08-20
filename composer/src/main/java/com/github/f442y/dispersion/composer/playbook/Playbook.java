@@ -1,6 +1,6 @@
 package com.github.f442y.dispersion.composer.playbook;
 
-import com.github.f442y.dispersion.composer.playbook.play.Play;
+import com.github.f442y.dispersion.composer.model.Play;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;

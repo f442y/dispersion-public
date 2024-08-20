@@ -2,10 +2,14 @@ package com.github.f442y.dispersion.core.application;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import java.util.concurrent.CountDownLatch;
 
 @SpringBootApplication(scanBasePackages = ApplicationStatic.PACKAGE_ROOT)
+@EnableJpaRepositories(basePackages = ApplicationStatic.PACKAGE_ROOT)
+@EntityScan(basePackages = ApplicationStatic.PACKAGE_ROOT)
 //@EnableJms
 public class DispersionApplication {
     private static final CountDownLatch applicationExitLatch = new CountDownLatch(1);
