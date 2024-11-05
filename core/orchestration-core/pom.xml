@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.github.f442y.dispersion</groupId>
         <artifactId>core</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>DEVELOP-SNAPSHOT</version>
     </parent>
 
     <groupId>com.github.f442y.dispersion.core</groupId>
@@ -16,12 +16,12 @@
         <dependency>
             <groupId>com.github.f442y.dispersion.core</groupId>
             <artifactId>orchestration-api</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>com.github.f442y.dispersion.core</groupId>
             <artifactId>service-api</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 

@@ -12,19 +12,21 @@ import com.github.f442y.dispersion.core.statemachine.statemachineconfiguration.S
 import com.github.f442y.dispersion.samples.TestStateMachineSpring.states.stateOne.StateOne;
 import com.github.f442y.dispersion.samples.TestStateMachineSpring.states.stateThree.StateThree;
 import com.github.f442y.dispersion.samples.TestStateMachineSpring.states.stateTwo.StateTwo;
+import jakarta.annotation.Nonnull;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
+import jakarta.inject.Singleton;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.lang.NonNull;
-import org.springframework.stereotype.Component;
 
-@Component
+@Named
+@Singleton
 @Slf4j
 public final class TestSpringStateMachine
         extends StateMachineConfiguration<TestSpringStateMachine.StateMachineSpringContext,
         TestSpringStateMachine.States, Integer, Integer> {
     public static final StateMachineSpringContext CONTEXT_FACTORY = new StateMachineSpringContext();
 
-    @Autowired
+    @Inject
     public TestSpringStateMachine(StateOne stateOne, StateTwo stateTwo, StateThree stateThree,
                                   ApplicationConfig applicationConfig,
                                   StateMachineEventLogMonitor stateMachineEventLogMonitor
@@ -46,7 +48,7 @@ public final class TestSpringStateMachine
     }
 
     @Override
-    public @NonNull StateMachineContextFactory<StateMachineSpringContext> stateMachineContextFactory() {
+    public @Nonnull StateMachineContextFactory<StateMachineSpringContext> stateMachineContextFactory() {
         return TestSpringStateMachine.CONTEXT_FACTORY;
     }
 

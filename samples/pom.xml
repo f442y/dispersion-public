@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.github.f442y</groupId>
-        <artifactId>dispersion</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <artifactId>dispersion-root</artifactId>
+        <version>DEVELOP-SNAPSHOT</version>
     </parent>
 
     <groupId>com.github.f442y.dispersion</groupId>
@@ -18,12 +18,12 @@
         <dependency>
             <groupId>com.github.f442y.dispersion.service.interfaces</groupId>
             <artifactId>sample-services</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>com.github.f442y.dispersion.service.interfaces</groupId>
             <artifactId>orchestration-services</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>${project.version}</version>
             <scope>compile</scope>
         </dependency>
 
@@ -31,14 +31,14 @@
         <dependency>
             <groupId>com.github.f442y.dispersion.core</groupId>
             <artifactId>statemachine-core</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
 
         <!--    statemachine monitoring engine   -->
         <dependency>
             <groupId>com.github.f442y.dispersion.core</groupId>
             <artifactId>statemachine-monitor</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>${project.version}</version>
             <scope>compile</scope>
         </dependency>
 
@@ -46,15 +46,20 @@
         <dependency>
             <groupId>com.github.f442y.dispersion.core</groupId>
             <artifactId>application-core</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>${project.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.github.f442y.dispersion.core</groupId>
             <artifactId>orchestration-core</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>${project.version}</version>
             <scope>compile</scope>
         </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.github.f442y.dispersion.core</groupId>-->
+<!--            <artifactId>database-core</artifactId>-->
+<!--            <version>${project.version}</version>-->
+<!--        </dependency>        -->
 
     </dependencies>
 

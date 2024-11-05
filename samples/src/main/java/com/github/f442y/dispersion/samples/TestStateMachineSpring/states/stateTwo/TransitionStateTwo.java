@@ -4,9 +4,11 @@ import com.github.f442y.dispersion.core.statemachine.exception.TransitionExcepti
 import com.github.f442y.dispersion.core.statemachine.state.transition.Transition;
 import com.github.f442y.dispersion.core.statemachine.state.transition.TransitionStateKey;
 import com.github.f442y.dispersion.samples.TestStateMachineSpring.TestSpringStateMachine;
-import org.springframework.stereotype.Component;
+import jakarta.inject.Named;
+import jakarta.inject.Singleton;
 
-@Component
+@Named
+@Singleton
 public class TransitionStateTwo
         extends Transition<TestSpringStateMachine.StateMachineSpringContext, TestSpringStateMachine.States,
         TransitionStateTwo.TS2Key> {

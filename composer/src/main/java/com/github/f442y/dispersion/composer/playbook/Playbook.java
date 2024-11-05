@@ -1,26 +1,23 @@
 package com.github.f442y.dispersion.composer.playbook;
 
 import com.github.f442y.dispersion.composer.model.Play;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.stereotype.Component;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
 
 import java.util.Collection;
 import java.util.List;
 
-@Component
-@Lazy
+@Named
 public class Playbook {
 
-    private final Collection<Play<?, ?>> plays;
+    private final Collection<Play<?, ?, ?>> plays;
 
-    @Autowired
-    @Lazy
-    public Playbook(List<Play<?, ?>> allPlays) {
+    @Inject
+    public Playbook(List<Play<?, ?, ?>> allPlays) {
         this.plays = allPlays;
     }
 
-    public Collection<Play<?, ?>> plays() {
+    public Collection<Play<?, ?, ?>> plays() {
         return plays;
     }
 }

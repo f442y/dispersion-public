@@ -7,23 +7,25 @@ import com.github.f442y.dispersion.core.orchestration.PlayBatchOutput;
 import com.github.f442y.dispersion.core.orchestration.PlayBatchOutputToken;
 import com.github.f442y.dispersion.samples.TestStateMachineSpring.service.BufferedBlockingSpawningServiceImpl;
 import com.github.f442y.dispersion.service.interfaces.SimpleOrchestrationService;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
+import jakarta.inject.Singleton;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Future;
 import java.util.function.Function;
 
 @Slf4j
-@Component
+@Named
+@Singleton
 public class SimpleOrchestrationServiceClient extends OrchestratorClientNode<SimpleOrchestrationService> {
     private final BufferedBlockingSpawningServiceImpl bufferedBlockingSpawningService;
     private final OrchestrationServiceDispatcher orchestrationServiceDispatcher;
 
     private ConcurrentHashMap<String, String> batchMap = new ConcurrentHashMap<>();
 
-    @Autowired
+    @Inject
     public SimpleOrchestrationServiceClient(BufferedBlockingSpawningServiceImpl bufferedBlockingSpawningService,
                                             OrchestrationServiceDispatcher orchestrationServiceDispatcher
     ) {

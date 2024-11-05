@@ -4,14 +4,14 @@ import com.github.f442y.dispersion.core.statemachine.StateMachine;
 import com.github.f442y.dispersion.core.statemachine.events.StateMachineEvent;
 import com.github.f442y.dispersion.core.statemachine.events.StateMachineEventMonitorAPI;
 import com.github.f442y.dispersion.core.statemachine.events.StateMachineEventNotificationAPI;
+import jakarta.inject.Named;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.Semaphore;
 
-@Component
+@Named
 @Slf4j
 public final class StateMachineEventLogMonitor implements StateMachineEventMonitorAPI<StateMachineEvent> {
     @Override

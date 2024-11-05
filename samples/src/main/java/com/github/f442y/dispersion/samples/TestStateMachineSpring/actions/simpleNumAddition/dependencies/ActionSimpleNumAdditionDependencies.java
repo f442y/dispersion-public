@@ -5,11 +5,13 @@ import com.github.f442y.dispersion.core.statemachine.dependency.registry.DataDep
 import com.github.f442y.dispersion.core.statemachine.dependency.registry.SystemStateDependencyRegistry;
 import com.github.f442y.dispersion.samples.TestStateMachineSpring.DummyTestServices.DummyServiceOne;
 import com.github.f442y.dispersion.samples.TestStateMachineSpring.DummyTestServices.DummyServiceTwo;
-import org.springframework.stereotype.Component;
+import jakarta.inject.Named;
+import jakarta.inject.Singleton;
 
 import java.util.Optional;
 
-@Component
+@Named
+@Singleton
 public final class ActionSimpleNumAdditionDependencies
         extends ActionDependencies<DataDependencyRegistry.NoDataDependency,
         ActionSimpleNumAdditionServiceDependencyRegistry, SystemStateDependencyRegistry.NoSystemStateDependency> {

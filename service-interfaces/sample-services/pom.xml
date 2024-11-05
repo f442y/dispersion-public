@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.github.f442y.dispersion.service.interfaces</groupId>
         <artifactId>service-interfaces</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>DEVELOP-SNAPSHOT</version>
     </parent>
 
     <artifactId>sample-services</artifactId>
@@ -14,13 +14,13 @@
         <dependency>
             <groupId>com.github.f442y.dispersion.core</groupId>
             <artifactId>service-api</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>${project.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.github.f442y.dispersion.core</groupId>
             <artifactId>statemachine-api</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>${project.version}</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>

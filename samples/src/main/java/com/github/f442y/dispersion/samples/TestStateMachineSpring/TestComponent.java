@@ -1,8 +1,10 @@
 package com.github.f442y.dispersion.samples.TestStateMachineSpring;
 
-import org.springframework.stereotype.Component;
+import jakarta.inject.Named;
+import jakarta.inject.Singleton;
 
-@Component
+@Named
+@Singleton
 public class TestComponent {
     private int count = 10;
 

@@ -1,7 +1,8 @@
 package com.github.f442y.dispersion.core.service.provider;
 
 import com.github.f442y.dispersion.core.service.Service;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.annotation.Nullable;
+import jakarta.inject.Inject;
 
 import java.util.Optional;
 
@@ -28,8 +29,8 @@ public abstract class AbstractServiceProvider<SERVICE extends Service> {
         return Optional.ofNullable(remoteService);
     }
 
-    @Autowired(required = false)
-    public final void setLocalService(SERVICE localService) {
+    @Inject
+    public final void setLocalService(@Nullable SERVICE localService) {
         this.localService = localService;
     }
 

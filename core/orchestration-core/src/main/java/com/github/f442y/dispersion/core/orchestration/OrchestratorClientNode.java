@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public abstract class OrchestratorClientNode<ORCHESTRATION_SERVICE extends OrchestrationService>
-        implements OrchestratorClient<ORCHESTRATION_SERVICE> {
+        implements OrchestratorClientAPI<ORCHESTRATION_SERVICE> {
 
     // remote listener
 

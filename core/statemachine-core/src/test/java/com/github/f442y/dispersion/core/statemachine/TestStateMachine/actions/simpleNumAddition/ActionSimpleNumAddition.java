@@ -4,12 +4,12 @@ import com.github.f442y.dispersion.core.statemachine.TestStateMachine.TestStateM
 import com.github.f442y.dispersion.core.statemachine.TestStateMachine.actions.simpleNumAddition.dependencies.ActionSimpleNumAdditionDependencies;
 import com.github.f442y.dispersion.core.statemachine.exception.ActionException;
 import com.github.f442y.dispersion.core.statemachine.state.action.Action;
+import jakarta.inject.Named;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
 
 @Slf4j
-@Component
+@Named
 public class ActionSimpleNumAddition
         extends Action<TestStateMachine.TestStateMachineContext, ActionSimpleNumAdditionDependencies> {
 

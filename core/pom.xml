@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.github.f442y</groupId>
-        <artifactId>dispersion</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <artifactId>dispersion-root</artifactId>
+        <version>DEVELOP-SNAPSHOT</version>
     </parent>
 
     <groupId>com.github.f442y.dispersion</groupId>
@@ -26,6 +26,7 @@
         <module>statemachine-monitor</module>
         <module>database-core</module>
         <module>database-api</module>
+        <module>application-spring</module>
     </modules>
 
     <dependencies>

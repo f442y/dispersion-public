@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.github.f442y</groupId>
-        <artifactId>dispersion</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <artifactId>dispersion-root</artifactId>
+        <version>DEVELOP-SNAPSHOT</version>
     </parent>
 
     <groupId>com.github.f442y.dispersion</groupId>
@@ -18,30 +18,34 @@
         <dependency>
             <groupId>com.github.f442y.dispersion.service.interfaces</groupId>
             <artifactId>orchestration-services</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>com.github.f442y.dispersion</groupId>
             <artifactId>samples</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>com.github.f442y.dispersion.core</groupId>
             <artifactId>statemachine-api</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.reflections</groupId>
             <artifactId>reflections</artifactId>
-            <version>[0.10.2,)</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.github.f442y.dispersion.core</groupId>
             <artifactId>statemachine-utils</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>${project.version}</version>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.f442y.dispersion.core</groupId>
+            <artifactId>database-core</artifactId>
+            <version>${project.version}</version>
         </dependency>
 
         <dependency>
@@ -62,6 +66,13 @@
         <!--            <groupId>org.dizitart</groupId>-->
         <!--            <artifactId>nitrite-mvstore-adapter</artifactId>-->
         <!--        </dependency>-->
+
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+            <!--            <scope>test</scope>-->
+        </dependency>
 
     </dependencies>
 

@@ -1,10 +1,10 @@
 package com.github.f442y.dispersion.samples.TestStateMachineSpring;
 
 import com.github.f442y.dispersion.samples.TestStateMachineSpring.service.BufferedBlockingSpawningServiceImpl;
+import jakarta.inject.Inject;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.concurrent.CountDownLatch;
@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @Slf4j
 public class SampleTestSpringStateMachineTests {
 
-    @Autowired
+    @Inject
     BufferedBlockingSpawningServiceImpl bufferedBlockingSpawningService;
 
 //    @BeforeAll

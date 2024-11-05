@@ -5,12 +5,14 @@ import com.github.f442y.dispersion.core.statemachine.exception.ActionException;
 import com.github.f442y.dispersion.core.statemachine.state.action.Action;
 import com.github.f442y.dispersion.core.statemachine.state.action.traits.PersistentMutation;
 import com.github.f442y.dispersion.samples.TestStateMachineSpring.TestSpringStateMachine;
+import jakarta.inject.Named;
+import jakarta.inject.Singleton;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
 
 @Slf4j
-@Component
+@Named
+@Singleton
 public class ActionPM
         extends Action<TestSpringStateMachine.StateMachineSpringContext, ActionDependencies.NoDependencies>
         implements PersistentMutation {

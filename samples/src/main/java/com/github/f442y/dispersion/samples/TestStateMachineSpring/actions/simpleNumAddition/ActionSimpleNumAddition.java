@@ -4,19 +4,21 @@ import com.github.f442y.dispersion.core.statemachine.state.action.Action;
 import com.github.f442y.dispersion.samples.TestStateMachineSpring.TestComponent;
 import com.github.f442y.dispersion.samples.TestStateMachineSpring.TestSpringStateMachine;
 import com.github.f442y.dispersion.samples.TestStateMachineSpring.actions.simpleNumAddition.dependencies.ActionSimpleNumAdditionDependencies;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
+import jakarta.inject.Singleton;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 @Slf4j
-@Component
+@Named
+@Singleton
 public class ActionSimpleNumAddition
         extends Action<TestSpringStateMachine.StateMachineSpringContext, ActionSimpleNumAdditionDependencies> {
 
     public final TestComponent testComponent;
 
-    @Autowired
+    @Inject
     public ActionSimpleNumAddition(ActionSimpleNumAdditionDependencies actionSimpleNumAdditionDependencies,
                                    TestComponent testComponent
     ) {

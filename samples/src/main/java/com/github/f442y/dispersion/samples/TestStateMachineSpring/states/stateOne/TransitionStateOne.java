@@ -1,14 +1,15 @@
 package com.github.f442y.dispersion.samples.TestStateMachineSpring.states.stateOne;
 
-
 import com.github.f442y.dispersion.core.statemachine.exception.TransitionException;
 import com.github.f442y.dispersion.core.statemachine.state.transition.Transition;
 import com.github.f442y.dispersion.core.statemachine.state.transition.TransitionStateKey;
 import com.github.f442y.dispersion.samples.TestStateMachineSpring.TestSpringStateMachine;
+import jakarta.inject.Named;
+import jakarta.inject.Singleton;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
 
-@Component
+@Named
+@Singleton
 @Slf4j
 public final class TransitionStateOne
         extends Transition<TestSpringStateMachine.StateMachineSpringContext, TestSpringStateMachine.States,

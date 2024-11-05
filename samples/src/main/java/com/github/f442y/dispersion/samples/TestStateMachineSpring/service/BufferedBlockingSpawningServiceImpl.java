@@ -5,18 +5,20 @@ import com.github.f442y.dispersion.core.statemachine.StateMachineFuture;
 import com.github.f442y.dispersion.core.statemachine.executor.BufferedStateMachineExecutor;
 import com.github.f442y.dispersion.samples.TestStateMachineSpring.TestSpringStateMachine;
 import com.github.f442y.dispersion.service.interfaces.BufferedBlockingSpawningService;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
+import jakarta.inject.Singleton;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 @Slf4j
-@Service
+@Named
+@Singleton
 public class BufferedBlockingSpawningServiceImpl
         extends BufferedStateMachineExecutor<TestSpringStateMachine.StateMachineSpringContext,
         TestSpringStateMachine.States, Integer, Integer>
         implements BufferedBlockingSpawningService {
 
-    @Autowired
+    @Inject
     public BufferedBlockingSpawningServiceImpl(TestSpringStateMachine testSpringStateMachine,
                                                ApplicationConfig applicationConfig
     ) {

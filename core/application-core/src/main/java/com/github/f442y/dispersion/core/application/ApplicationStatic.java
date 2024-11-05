@@ -1,12 +1,14 @@
 package com.github.f442y.dispersion.core.application;
 
-import org.springframework.stereotype.Component;
+import jakarta.inject.Named;
+import jakarta.inject.Singleton;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.concurrent.Semaphore;
 
-@Component
+@Named
+@Singleton
 public class ApplicationStatic implements ApplicationConfig {
     private static final boolean SKIP_STATE_MAP_VALIDATION = false;
     private static final int APPLICATION_PERMIT_LIMIT = 10_000_000;

@@ -1,16 +1,16 @@
 package com.github.f442y.dispersion.core.application;
 
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
-import org.springframework.stereotype.Component;
 
-@Component
+@Named
 @Slf4j
 public class SpringEvents {
-    @Autowired
+    @Inject
     ApplicationStatic applicationStatic;
 
     @EventListener({ContextRefreshedEvent.class})

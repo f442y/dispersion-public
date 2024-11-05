@@ -1,4 +1,4 @@
-package com.github.f442y.dispersion.composer.playbook;
+package com.github.f442y.dispersion.composer.playbook.playActor;
 
 import com.github.f442y.dispersion.composer.model.Play;
 import com.github.f442y.dispersion.core.orchestration.OrchestrationEntity;
@@ -15,13 +15,13 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * dispatches play for orchestration entity/entities to orchestrator server node on dependencies fulfilled
  */
 @Slf4j
-public class PlayActorRunnable implements PlayActor, Runnable {
-    private final Play<?, ?> play;
+public class PlayActorRunnable implements PlayActorAPI, Runnable {
+    private final Play<?, ?, ?> play;
     private final AtomicBoolean active = new AtomicBoolean(true);
     private final Channel<OrchestrationEntity> channel = Channel.newUnlimitedChannel();
-    private final Set<PlayActor> playActorsToSignal = new HashSet<>();
+    private final Set<PlayActorAPI> playActorsToSignal = new HashSet<>();
 
-    public PlayActorRunnable(Play<?, ?> play) {
+    public PlayActorRunnable(Play<?, ?, ?> play) {
         this.play = play;
     }
 
@@ -30,7 +30,7 @@ public class PlayActorRunnable implements PlayActor, Runnable {
         Thread.currentThread().setName("playActor-vt-" + this.play.getClass().getSimpleName());
         // use play entity provider to build entity filter (run for these entities)
         // get dependencies from play
-        Set<Play<?, ?>> playDependencies = play.afterThesePlays;
+        Set<Play<?, ?, ?>> playDependencies = play.afterThesePlays;
         // check dependency status (may already be complete)
         // search for active dependency play actors, subscribe to relevant signals
         log.info("waiting ...");
@@ -54,7 +54,7 @@ public class PlayActorRunnable implements PlayActor, Runnable {
 
     private void sendSignals(OrchestrationEntity orchestrationEntity) {
         playActorsToSignal.forEach(playActor -> {
-            log.info("sending signal to ({})", playActor.play().getClass().getSimpleName());
+            log.info("sending signal to ({})", playActor.play().getName());
             try {
                 playActor.sendSignalToChannel(orchestrationEntity);
             } catch (InterruptedException e) {
@@ -64,7 +64,7 @@ public class PlayActorRunnable implements PlayActor, Runnable {
     }
 
     @Override
-    public Play<?, ?> play() {
+    public Play<?, ?, ?> play() {
         return this.play;
     }
 
@@ -79,7 +79,7 @@ public class PlayActorRunnable implements PlayActor, Runnable {
     }
 
     @Override
-    public void subscribe(PlayActor playActor) {
+    public void subscribe(PlayActorAPI playActor) {
         this.playActorsToSignal.add(playActor);
     }
 }

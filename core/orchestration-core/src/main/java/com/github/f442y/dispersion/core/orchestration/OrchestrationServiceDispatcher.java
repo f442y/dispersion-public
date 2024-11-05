@@ -1,14 +1,14 @@
 package com.github.f442y.dispersion.core.orchestration;
 
+import jakarta.inject.Named;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.function.Function;
 
-@Component
+@Named
 @Slf4j
 public class OrchestrationServiceDispatcher {
     private final ExecutorService executorService;
@@ -24,5 +24,6 @@ public class OrchestrationServiceDispatcher {
                 serviceRun.apply("");
             }
             log.info("batch complete");
-        });}
+        });
+    }
 }

@@ -2,6 +2,8 @@ package com.github.f442y.dispersion.composer.playbook;
 
 import com.github.f442y.dispersion.composer.model.Play;
 import com.github.f442y.dispersion.composer.model.PlayRepository;
+import com.github.f442y.dispersion.composer.playbook.playActor.PlayActorAPI;
+import com.github.f442y.dispersion.composer.playbook.playActor.PlayActorRunnable;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +21,12 @@ import java.util.stream.Collectors;
 @SpringBootTest
 @Slf4j
 public class ConductorTest {
+    private final ExecutorService executorService = Executors.newVirtualThreadPerTaskExecutor();
+    private final Map<String, PlayActorAPI> activePlays = new HashMap<>();
     @Autowired
     private PlayRepository playRepository;
     @Autowired
-    private Collection<Play<?, ?>> plays;
-    private final ExecutorService executorService = Executors.newVirtualThreadPerTaskExecutor();
-    private final Map<String, PlayActor> activePlays = new HashMap<>();
+    private Collection<Play<?, ?, ?>> plays;
 
     @Test
     public void playsTest() throws InterruptedException {
