@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.github.f442y.dispersion.core</groupId>
         <artifactId>statemachine</artifactId>
-        <version>DEVELOP-SNAPSHOT</version>
+        <version>${revision}</version>
     </parent>
 
     <groupId>com.github.f442y.dispersion.core.statemachine</groupId>
@@ -15,7 +15,7 @@
         <dependency>
             <groupId>com.github.f442y.dispersion.core.statemachine</groupId>
             <artifactId>statemachine-api</artifactId>
-            <version>DEVELOP-SNAPSHOT</version>
+            <version>${project.version}</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>

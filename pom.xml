@@ -2,16 +2,16 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>[3,4)</version>
-        <relativePath/> <!-- lookup parent from repository -->
-    </parent>
+<!--    <parent>-->
+<!--        <groupId>org.springframework.boot</groupId>-->
+<!--        <artifactId>spring-boot-starter-parent</artifactId>-->
+<!--        <version>[3,4)</version>-->
+<!--        <relativePath/> &lt;!&ndash; lookup parent from repository &ndash;&gt;-->
+<!--    </parent>-->
 
     <groupId>com.github.f442y</groupId>
     <artifactId>dispersion-root</artifactId>
-    <version>DEVELOP-SNAPSHOT</version>
+    <version>${revision}</version>
     <packaging>pom</packaging>
     <name>dispersion-root</name>
     <description>Root of Dispersion Project</description>
@@ -21,28 +21,31 @@
         <module>samples</module>
         <module>applications</module>
         <module>service-interfaces</module>
-        <module>composer</module>
+        <module>orchestration</module>
     </modules>
 
     <properties>
+        <!--    project versioning    -->
+        <revision>DEVELOP${changelist}</revision>
+        <changelist>-SNAPSHOT</changelist>
         <java.version>21</java.version>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <maven.compiler.proc>full</maven.compiler.proc>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <!--    project versions    -->
-        <project.version>DEVELOP-SNAPSHOT</project.version>
         <!--    dependency versions    -->
         <slf4j.version>[2,3)</slf4j.version>
-        <opentelemetry.bom.version>1.40.0</opentelemetry.bom.version>
+        <junit.version>5.12.1</junit.version>
+        <spring.boot.version>3.4.3</spring.boot.version>
+        <opentelemetry.bom.version>1.48.0</opentelemetry.bom.version>
         <coherence.version>[24,)</coherence.version>
         <fury.serializer.version>[0,1)</fury.serializer.version>
         <gson.serializer.version>[2.10.1,)</gson.serializer.version>
+        <avaje.jsonb.version>[3.0,)</avaje.jsonb.version>
         <jox.channels.version>[0.3.1,)</jox.channels.version>
         <stormpot.objectpool.version>[4,5)</stormpot.objectpool.version>
         <fop.objectpool.version>[2.2.1,)</fop.objectpool.version>
         <jgrapht.core.version>[1.5.2,)</jgrapht.core.version>
-        <nitrite.db.version>4.3.0</nitrite.db.version>
     </properties>
 
     <dependencyManagement>
@@ -71,6 +74,13 @@
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
                 <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring.boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
             <dependency>
                 <groupId>io.opentelemetry</groupId>
@@ -105,16 +115,35 @@
                 <version>${gson.serializer.version}</version>
             </dependency>
             <dependency>
+                <groupId>io.avaje</groupId>
+                <artifactId>avaje-jsonb</artifactId>
+                <version>${avaje.jsonb.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.avaje</groupId>
+                <artifactId>avaje-jsonb-spring-starter</artifactId>
+                <version>${avaje.jsonb.version}</version>
+            </dependency>
+            <!-- Annotation processors -->
+            <dependency>
+                <groupId>io.avaje</groupId>
+                <artifactId>avaje-jsonb-generator</artifactId>
+                <version>${avaje.jsonb.version}</version>
+                <scope>provided</scope>
+                <optional>true</optional>
+            </dependency>
+            <dependency>
+                <groupId>org.junit</groupId>
+                <artifactId>junit-bom</artifactId>
+                <version>${junit.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
                 <groupId>org.jgrapht</groupId>
                 <artifactId>jgrapht-core</artifactId>
                 <version>${jgrapht.core.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.dizitart</groupId>
-                <artifactId>nitrite-bom</artifactId>
-                <version>${nitrite.db.version}</version>
-                <scope>import</scope>
-                <type>pom</type>
             </dependency>
             <dependency>
                 <groupId>com.oracle.coherence.spring</groupId>
@@ -267,12 +296,6 @@
         <!--            <artifactId>artemis-jakarta-server</artifactId>-->
         <!--            <scope>test</scope>-->
         <!--        </dependency>-->
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
 
 
@@ -282,7 +305,16 @@
                 <plugin>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>${spring.boot.version}</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>repackage</goal>
+                            </goals>
+                        </execution>
+                    </executions>
                     <configuration>
+                        <executable>true</executable>
                         <excludes>
                             <exclude>
                                 <groupId>org.projectlombok</groupId>
@@ -308,10 +340,39 @@
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>3.5.2</version>
                     <configuration>
-                        <excludedGroups>LongRunningTests</excludedGroups>
+                        <!-- LongRunningTests -->
+                        <!-- Tests for light benchmarks, use high amount of resources and can take a long time -->
+                        <!-- Playground -->
+                        <!-- Test that do not finish, used as a live playground to run app -->
+                        <excludedGroups>LongRunningTests, Playground</excludedGroups>
                         <!--                        <argLine>&#45;&#45;enable-preview</argLine>-->
                         <!--                        <argLine>-Xms250m -Xmx300m</argLine>-->
                     </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>flatten-maven-plugin</artifactId>
+                    <version>1.7.0</version>
+                    <configuration>
+                        <updatePomFile>true</updatePomFile>
+                        <flattenMode>resolveCiFriendliesOnly</flattenMode>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>flatten</id>
+                            <phase>process-resources</phase>
+                            <goals>
+                                <goal>flatten</goal>
+                            </goals>
+                        </execution>
+                        <execution>
+                            <id>flatten.clean</id>
+                            <phase>clean</phase>
+                            <goals>
+                                <goal>clean</goal>
+                            </goals>
+                        </execution>
+                    </executions>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -322,7 +383,10 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
             </plugin>
-
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>flatten-maven-plugin</artifactId>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>

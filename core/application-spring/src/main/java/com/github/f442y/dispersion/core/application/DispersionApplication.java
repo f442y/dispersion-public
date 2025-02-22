@@ -4,26 +4,24 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-
-import java.util.concurrent.CountDownLatch;
+import org.springframework.web.socket.config.annotation.EnableWebSocket;
 
 @SpringBootApplication(scanBasePackages = ApplicationStatic.PACKAGE_ROOT)
+@EntityScan(basePackages = ApplicationStatic.PACKAGE_ROOT)
+@EnableAsync
 @EnableJpaRepositories(basePackages = ApplicationStatic.PACKAGE_ROOT)
 @EnableTransactionManagement
-@EntityScan(basePackages = ApplicationStatic.PACKAGE_ROOT)
+@EnableWebSocket
 //@EnableJms
-public class DispersionApplication {
-    private static final CountDownLatch applicationExitLatch = new CountDownLatch(1);
+public class DispersionApplication implements AppLatch {
+
 //    public static final RuntimeBootValidation RUNTIME_BOOT_VALIDATION = new RuntimeBootValidation();
 
     public static void startApp(String[] args) throws InterruptedException {
         SpringApplication.run(DispersionApplication.class, args);
         applicationExitLatch.await();
-    }
-
-    public static void stopApp() {
-        applicationExitLatch.countDown();
     }
 
 //    @EventListener(ApplicationReadyEvent.class)

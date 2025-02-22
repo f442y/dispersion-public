@@ -59,9 +59,8 @@ public final class StateMachineCallable<CONTEXT extends StateMachineContext,
         StateWithCallableTriggers<CONTEXT, STATE_KEY> currentState =
                 stateMachineConfiguration.getStateMap().getInitialState();
         // extract context factory from statemachine configuration use it to create a new instance
-        CONTEXT stateMachineContext = stateMachineConfiguration
-                .stateMachineContextFactoryTrigger(this, stateMachineEventLog)
-                .newInstance();
+        CONTEXT stateMachineContext =
+                stateMachineConfiguration.stateMachineContextFactoryTrigger(this, stateMachineEventLog).newInstance();
 
         try {
             // *Input*
@@ -125,6 +124,10 @@ public final class StateMachineCallable<CONTEXT extends StateMachineContext,
         } finally {
             // signal death of statemachine
             stateMachineConfiguration.stateMachineFinishTrigger(this, stateMachineEventLog);
+            // ensure AsyncUIUpdateTask in stateMachineEventLog is cancelled if still running
+            // FinishTrigger should cancel the AsyncUIUpdateTask, however, if an error occurs during FinishTrigger
+            // event call, the task remains active
+            stateMachineEventLog.cancelAsyncUIUpdateTask();
             // Thread Permit Handling
             if (bufferSemaphore != null) {
                 // release any permits this statemachine is holding

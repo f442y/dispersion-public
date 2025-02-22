@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.github.f442y.dispersion.core</groupId>
         <artifactId>statemachine</artifactId>
-        <version>DEVELOP-SNAPSHOT</version>
+        <version>${revision}</version>
     </parent>
 
     <groupId>com.github.f442y.dispersion.core.statemachine</groupId>
@@ -19,10 +19,10 @@
             <scope>compile</scope>
         </dependency>
 
-        <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>com.google.code.gson</groupId>-->
+        <!--            <artifactId>gson</artifactId>-->
+        <!--        </dependency>-->
     </dependencies>
 
 

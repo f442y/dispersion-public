@@ -6,10 +6,10 @@
     <parent>
         <groupId>com.github.f442y</groupId>
         <artifactId>dispersion-root</artifactId>
-        <version>DEVELOP-SNAPSHOT</version>
+        <version>${revision}</version>
     </parent>
 
-    <groupId>com.github.f442y.dispersion.applications</groupId>
+    <groupId>com.github.f442y.dispersion</groupId>
     <artifactId>applications</artifactId>
     <packaging>pom</packaging>
 
@@ -22,6 +22,10 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>flatten-maven-plugin</artifactId>
             </plugin>
             <!--            <plugin>-->
             <!--                <groupId>org.apache.maven.plugins</groupId>-->

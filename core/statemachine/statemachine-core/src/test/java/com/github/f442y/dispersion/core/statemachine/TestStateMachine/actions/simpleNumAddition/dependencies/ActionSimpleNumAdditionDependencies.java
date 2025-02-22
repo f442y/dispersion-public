@@ -3,26 +3,24 @@ package com.github.f442y.dispersion.core.statemachine.TestStateMachine.actions.s
 import com.github.f442y.dispersion.core.statemachine.dependency.ActionDependencies;
 import com.github.f442y.dispersion.core.statemachine.dependency.registry.DataDependencyRegistry;
 import com.github.f442y.dispersion.core.statemachine.dependency.registry.SystemStateDependencyRegistry;
-import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
-@Component
 public final class ActionSimpleNumAdditionDependencies
         extends ActionDependencies<DataDependencyRegistry.NoDataDependency,
-        ActionSimpleNumAdditionServiceDependencyRegistry, SystemStateDependencyRegistry.NoSystemStateDependency> {
-    private final ActionSimpleNumAdditionServiceDependencyRegistry actionSimpleNumAdditionServiceRegistryObject;
+        ActionSimpleNumAdditionServiceDR, SystemStateDependencyRegistry.NoSystemStateDependency> {
+    private final ActionSimpleNumAdditionServiceDR actionSimpleNumAdditionServiceRegistryObject;
 
     public ActionSimpleNumAdditionDependencies() {
         this.actionSimpleNumAdditionServiceRegistryObject =
-                new ActionSimpleNumAdditionServiceDependencyRegistry(
+                new ActionSimpleNumAdditionServiceDR(
                         new DummyTestServices.DummyServiceOne(),
                         new DummyTestServices.DummyServiceTwo()
                 );
     }
 
     @Override
-    public Optional<ActionSimpleNumAdditionServiceDependencyRegistry> serviceRegistry() {
+    public Optional<ActionSimpleNumAdditionServiceDR> serviceRegistry() {
         return Optional.of(actionSimpleNumAdditionServiceRegistryObject);
     }
 }

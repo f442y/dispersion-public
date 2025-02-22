@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.github.f442y.dispersion</groupId>
+        <artifactId>orchestration</artifactId>
+        <version>${revision}</version>
+    </parent>
+
+    <groupId>com.github.f442y.dispersion.orchestration</groupId>
+    <artifactId>orchestrator</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.github.f442y.dispersion.orchestration</groupId>
+            <artifactId>orchestrator-entity-interfaces</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.f442y.dispersion.orchestration.spi.entities</groupId>
+            <artifactId>_spi-entities-all</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <!-- Add all services in services module here -->
+        <dependency>
+            <groupId>com.github.f442y.dispersion.service.interfaces</groupId>
+            <artifactId>orchestration-services</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.f442y.dispersion</groupId>
+            <artifactId>samples</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.f442y.dispersion.core</groupId>
+            <artifactId>database-core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.softwaremill.jox</groupId>
+            <artifactId>channels</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.reflections</groupId>-->
+        <!--            <artifactId>reflections</artifactId>-->
+        <!--            <scope>test</scope>-->
+        <!--        </dependency>-->
+    </dependencies>
+
+</project>

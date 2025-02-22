@@ -7,10 +7,10 @@ import com.github.f442y.dispersion.core.statemachine.statemachineconfiguration.S
 
 public class TestStateMachineExecutor
         extends BufferedStateMachineExecutor<TestStateMachine.TestStateMachineContext, TestStateMachine.StateKeys,
-        Integer, Integer> {
+        TestStateMachine.WrappedInput, Integer> {
 
     public static final StateMachineConfigurationWithCallableTriggers<TestStateMachine.TestStateMachineContext,
-            TestStateMachine.StateKeys, Integer, Integer>
+            TestStateMachine.StateKeys, TestStateMachine.WrappedInput, Integer>
             TEST_STATE_MACHINE = new TestStateMachine();
 
     public TestStateMachineExecutor(ApplicationConfig applicationConfig) {
@@ -23,10 +23,11 @@ public class TestStateMachineExecutor
     }
 
     public StateMachineFuture<Integer> dispatch() throws InterruptedException {
-        return super.addStateMachineTaskToExecutor(10);
+        return super.addStateMachineTaskToExecutor(new TestStateMachine.WrappedInput(null, null));
     }
 
-    public StateMachineFuture<Integer> dispatchWithInput(int input) throws InterruptedException {
-        return super.addStateMachineTaskToExecutor(input);
+    public StateMachineFuture<Integer> dispatchWithInput(TestStateMachine.WrappedInput wrappedInput
+    ) throws InterruptedException {
+        return super.addStateMachineTaskToExecutor(wrappedInput);
     }
 }

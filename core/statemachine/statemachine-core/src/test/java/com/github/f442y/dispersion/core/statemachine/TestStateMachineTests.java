@@ -1,5 +1,6 @@
 package com.github.f442y.dispersion.core.statemachine;
 
+import com.github.f442y.dispersion.core.statemachine.TestStateMachine.TestStateMachine;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -23,6 +24,9 @@ public class TestStateMachineTests {
         testStateMachineExecutor = new TestStateMachineExecutor(new TestApplicationStatic());
     }
 
+    /**
+     * Many threads making many sequential calls
+     */
     @Test
     @Tag("LongRunningTests")
     public void testNoSpringMultiVT() throws InterruptedException {
@@ -32,12 +36,17 @@ public class TestStateMachineTests {
                 .ofVirtual()
                 .name("test-vt-noSpring", 1)
                 .factory())) {
+            CountDownLatch totalLatch =
+                    new CountDownLatch(numOfSimultaneousCallingThreads * numOfSequentialCallsPerThread);
             CountDownLatch latch = new CountDownLatch(numOfSimultaneousCallingThreads);
             for (int t = 0; t < numOfSimultaneousCallingThreads; t++) {
                 executorService.submit(() -> {
                     try {
                         for (int i = 0; i < numOfSequentialCallsPerThread; i++) {
-                            var res = testStateMachineExecutor.dispatch().future().get();
+                            var res = testStateMachineExecutor
+                                    .dispatchWithInput(new TestStateMachine.WrappedInput(totalLatch, 10))
+                                    .future()
+                                    .get();
 //                            log.info("SM Future Resolved, i={}, {}", i, res);
                             assertEquals(30, res);
                         }
@@ -48,11 +57,37 @@ public class TestStateMachineTests {
                 });
             }
             latch.await();
+            totalLatch.await();
         }
 //        System.gc();
 //        TimeUnit.SECONDS.sleep(2);
     }
 
+    /**
+     * One thread making many sequential calls
+     */
+    @Test
+    @Tag("LongRunningTests")
+    public void testNoSpringMultiVTLatched() throws InterruptedException {
+        int numOfSequentialCalls = 2_000_000;
+        CountDownLatch latch = new CountDownLatch(numOfSequentialCalls);
+        Thread.startVirtualThread(() -> {
+            try {
+                for (int i = 0; i < numOfSequentialCalls; i++) {
+                    testStateMachineExecutor.dispatchWithInput(new TestStateMachine.WrappedInput(latch, 10));
+                }
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }).setName("test-vt-noSpring");
+        latch.await();
+//        System.gc();
+//        TimeUnit.SECONDS.sleep(2);
+    }
+
+    /**
+     * One thread making one call
+     */
     @Test
     public void testNoSpringSingleVT() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);

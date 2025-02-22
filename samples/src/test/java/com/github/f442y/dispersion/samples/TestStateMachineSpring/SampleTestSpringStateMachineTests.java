@@ -30,6 +30,7 @@ public class SampleTestSpringStateMachineTests {
     @Test
     @Tag("LongRunningTests")
     public void testMultiVT() throws InterruptedException {
+        log.info("Long test running");
         int numOfSimultaneousCallingThreads = 2_000;
         int numOfSequentialCallsPerThread = 1_000;
         try (ExecutorService executorService = Executors.newThreadPerTaskExecutor(Thread

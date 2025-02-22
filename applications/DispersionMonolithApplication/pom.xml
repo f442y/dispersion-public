@@ -4,17 +4,27 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.github.f442y.dispersion.applications</groupId>
+        <groupId>com.github.f442y.dispersion</groupId>
         <artifactId>applications</artifactId>
-        <version>DEVELOP-SNAPSHOT</version>
+        <version>${revision}</version>
     </parent>
 
     <artifactId>DispersionMonolithApplication</artifactId>
 
+    <properties>
+        <start-class>com.github.f442y.dispersion.applications.DispersionMonolithApplication</start-class>
+    </properties>
+
     <dependencies>
         <dependency>
-            <groupId>com.github.f442y.dispersion</groupId>
-            <artifactId>composer</artifactId>
+            <groupId>com.github.f442y.dispersion.orchestration</groupId>
+            <artifactId>orchestrator</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.f442y.dispersion.orchestration</groupId>
+            <artifactId>orchestrator-state-web-api</artifactId>
             <version>${project.version}</version>
         </dependency>
 
@@ -32,31 +42,31 @@
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <configuration>
-                    <descriptorRefs>
-                        <descriptorRef>jar-with-dependencies</descriptorRef>
-                    </descriptorRefs>
-                    <archive>
-                        <manifest>
-                            <addClasspath>true</addClasspath>
-                            <mainClass>com.github.f442y.dispersion.applications.DispersionMonolithApplication
-                            </mainClass>
-                        </manifest>
-                    </archive>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>assemble-all</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+            <!--            <plugin>-->
+            <!--                <groupId>org.apache.maven.plugins</groupId>-->
+            <!--                <artifactId>maven-assembly-plugin</artifactId>-->
+            <!--                <configuration>-->
+            <!--                    <descriptorRefs>-->
+            <!--                        <descriptorRef>jar-with-dependencies</descriptorRef>-->
+            <!--                    </descriptorRefs>-->
+            <!--                    <archive>-->
+            <!--                        <manifest>-->
+            <!--                            <addClasspath>true</addClasspath>-->
+            <!--                            <mainClass>com.github.f442y.dispersion.applications.DispersionMonolithApplication-->
+            <!--                            </mainClass>-->
+            <!--                        </manifest>-->
+            <!--                    </archive>-->
+            <!--                </configuration>-->
+            <!--                <executions>-->
+            <!--                    <execution>-->
+            <!--                        <id>assemble-all</id>-->
+            <!--                        <phase>package</phase>-->
+            <!--                        <goals>-->
+            <!--                            <goal>single</goal>-->
+            <!--                        </goals>-->
+            <!--                    </execution>-->
+            <!--                </executions>-->
+            <!--            </plugin>-->
         </plugins>
     </build>
 

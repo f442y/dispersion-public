@@ -79,11 +79,11 @@ public class StateMachineEventLog implements StateMachineEventLogAPI<StateMachin
         this.stateMachineEventsArray[eventCount] = stateMachineEvent;
         try {
             eventCount++;
-            if (this.isSyncEvent(stateMachineEvent)) {
+            if (isSyncEvent(stateMachineEvent)) {
                 // stop timer task as sync event notification synchronize events
                 // (if running) may not be running if first event or previous event is sync event
                 if (timerRunning) {
-                    asyncUIUpdateTask.cancel();
+                    this.asyncUIUpdateTask.cancel();
                     timerRunning = false;
                 }
                 // events synced on this thread
@@ -109,7 +109,7 @@ public class StateMachineEventLog implements StateMachineEventLogAPI<StateMachin
                 // start a new timer for ui-notification task if none running
                 if (!timerRunning) {
                     asyncUIUpdateTask = new AsyncUIUpdateTask(this);
-                    EVENT_LOG_TIMER.scheduleAtFixedRate(asyncUIUpdateTask, new Random().nextInt(500, 1000), 2000);
+                    EVENT_LOG_TIMER.scheduleAtFixedRate(asyncUIUpdateTask, new Random().nextInt(100, 500), 1000);
                     timerRunning = true;
                 }
             }
@@ -120,11 +120,19 @@ public class StateMachineEventLog implements StateMachineEventLogAPI<StateMachin
         }
     }
 
-    private boolean isSyncEvent(StateMachineEvent stateMachineEvent) {
+    private static boolean isSyncEvent(StateMachineEvent stateMachineEvent) {
         switch (stateMachineEvent) {
             case StartEvent ignored -> {return true;}
             case FinishEvent ignored -> {return true;}
             default -> {return false;}
+        }
+    }
+
+    @Override
+    public final void cancelAsyncUIUpdateTask() {
+        if (timerRunning) {
+            this.asyncUIUpdateTask.cancel();
+            timerRunning = false;
         }
     }
 

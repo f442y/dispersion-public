@@ -7,7 +7,6 @@ import com.github.f442y.dispersion.core.statemachine.context.StateMachineContext
 import com.github.f442y.dispersion.core.statemachine.state.StateKey;
 import com.github.f442y.dispersion.core.statemachine.statemachineconfiguration.StateMachineConfigurationWithCallableTriggers;
 
-import java.text.MessageFormat;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -29,7 +28,7 @@ public abstract class BufferedStateMachineExecutor<CONTEXT extends StateMachineC
     ) {
         this.executorService = Executors.newThreadPerTaskExecutor(Thread
                 .ofVirtual()
-                .name(MessageFormat.format("{0}-bv-", serviceThreadName), 0)
+                .name(String.format("%s-bv-", serviceThreadName), 0)
                 .factory());
         this.stateMachineConfiguration = stateMachineConfiguration;
         bufferSemaphore = new Semaphore(bufferSize);

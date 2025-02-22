@@ -1,6 +1,6 @@
 package com.github.f442y.dispersion.core.orchestration;
 
-public abstract class OrchestratorClientNode<ORCHESTRATION_SERVICE extends OrchestrationService>
+public abstract class OrchestratorClientNode<ORCHESTRATION_SERVICE extends OrchestrationServiceAPI>
         implements OrchestratorClientAPI<ORCHESTRATION_SERVICE> {
 
     // remote listener

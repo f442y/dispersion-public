@@ -1,0 +1,13 @@
+package com.github.f442y.dispersion.orchestrator;
+
+import com.github.f442y.dispersion.core.application.ApplicationStatic;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication(scanBasePackages = ApplicationStatic.PACKAGE_ROOT)
+public class SamplePlaybookApplicationTests {
+
+    @Test
+    void contextLoads() {
+    }
+}

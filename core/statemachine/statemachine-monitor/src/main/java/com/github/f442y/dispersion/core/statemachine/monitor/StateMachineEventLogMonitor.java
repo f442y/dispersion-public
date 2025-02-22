@@ -20,7 +20,7 @@ public final class StateMachineEventLogMonitor implements StateMachineEventMonit
     public void synchronizeEventLog(StateMachine<?, ?> stateMachine, StateMachineEvent[] stateMachineEvents,
                                     short syncFrom, short syncTo
     ) {
-//        log.info("block and perform sync for statemachine: {}", stateMachine.uuid());
+        log.info("block and perform sync for statemachine: {}", stateMachine.uuid());
         if (syncFrom >= syncTo) {
             return; // do nothing
         }

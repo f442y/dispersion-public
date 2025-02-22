@@ -13,7 +13,7 @@ public class ApplicationStatic implements ApplicationConfig {
     private static final boolean SKIP_STATE_MAP_VALIDATION = false;
     private static final int APPLICATION_PERMIT_LIMIT = 10_000_000;
     private static final Semaphore APPLICATION_SEMAPHORE = new Semaphore(APPLICATION_PERMIT_LIMIT);
-    private final Collection<Exception> exceptions = new ArrayList<>();
+    private static final Collection<Exception> exceptions = new ArrayList<>();
 
     public void acquireThreadPermits(Semaphore serviceBufferSemaphore) throws InterruptedException {
         APPLICATION_SEMAPHORE.acquire();
